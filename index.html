@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Hot Wings Restaurant</title>
 
 <style>
@@ -23,7 +25,7 @@ h1{
 color:orange;
 }
 
-.menu-section{
+.section{
 margin:30px;
 }
 
@@ -47,10 +49,6 @@ border:none;
 padding:8px 12px;
 border-radius:5px;
 cursor:pointer;
-}
-
-button:hover{
-background:#ff9800;
 }
 
 input,select{
@@ -78,64 +76,11 @@ margin:20px;
 
 <h1>🔥 Hot Wings Restaurant</h1>
 
-<p>Order Food Online & Book Table</p>
+<p>Online Food Order & Table Booking</p>
 
 </header>
 
-<!-- MOMOS -->
-
-<div class="menu-section">
-
-<h2>Momos</h2>
-
-<div class="menu">
-
-<div class="item"><h4>Deep Fried Momo</h4><p>₹90</p><button onclick="add('Deep Fried Momo',90)">Add</button></div>
-<div class="item"><h4>Pan Fried Momo</h4><p>₹90</p><button onclick="add('Pan Fried Momo',90)">Add</button></div>
-<div class="item"><h4>Honey Toast Momo</h4><p>₹110</p><button onclick="add('Honey Toast Momo',110)">Add</button></div>
-<div class="item"><h4>Butter Toast Momo</h4><p>₹110</p><button onclick="add('Butter Toast Momo',110)">Add</button></div>
-<div class="item"><h4>Hot Garlic Momo</h4><p>₹100</p><button onclick="add('Hot Garlic Momo',100)">Add</button></div>
-<div class="item"><h4>Chilli Soya Toast Momo</h4><p>₹100</p><button onclick="add('Chilli Soya Toast Momo',100)">Add</button></div>
-<div class="item"><h4>Mayonnaise Momo</h4><p>₹110</p><button onclick="add('Mayonnaise Momo',110)">Add</button></div>
-<div class="item"><h4>Schezwan Momo</h4><p>₹100</p><button onclick="add('Schezwan Momo',100)">Add</button></div>
-<div class="item"><h4>Tandoori Momo</h4><p>₹120</p><button onclick="add('Tandoori Momo',120)">Add</button></div>
-<div class="item"><h4>Dahi Momo</h4><p>₹120</p><button onclick="add('Dahi Momo',120)">Add</button></div>
-<div class="item"><h4>Afghani Momo</h4><p>₹130</p><button onclick="add('Afghani Momo',130)">Add</button></div>
-<div class="item"><h4>Kurkure Momo</h4><p>₹120</p><button onclick="add('Kurkure Momo',120)">Add</button></div>
-<div class="item"><h4>Momo Thali (15pcs)</h4><p>₹200</p><button onclick="add('Momo Thali',200)">Add</button></div>
-<div class="item"><h4>Hariyali Momo</h4><p>₹130</p><button onclick="add('Hariyali Momo',130)">Add</button></div>
-<div class="item"><h4>Pizza Momo</h4><p>₹130</p><button onclick="add('Pizza Momo',130)">Add</button></div>
-<div class="item"><h4>Wonton Momo</h4><p>₹140</p><button onclick="add('Wonton Momo',140)">Add</button></div>
-
-</div>
-
-</div>
-
-<!-- PIZZA -->
-
-<div class="menu-section">
-
-<h2>Pizza</h2>
-
-<div class="menu">
-
-<div class="item"><h4>Margherita Pizza</h4><p>₹199</p><button onclick="add('Margherita Pizza',199)">Add</button></div>
-<div class="item"><h4>Paneer Cheese Pizza</h4><p>₹249</p><button onclick="add('Paneer Cheese Pizza',249)">Add</button></div>
-<div class="item"><h4>Paneer Tikka Pizza</h4><p>₹269</p><button onclick="add('Paneer Tikka Pizza',269)">Add</button></div>
-<div class="item"><h4>Chicken Cheese Pizza</h4><p>₹299</p><button onclick="add('Chicken Cheese Pizza',299)">Add</button></div>
-<div class="item"><h4>Meat Lovers Pizza</h4><p>₹349</p><button onclick="add('Meat Lovers Pizza',349)">Add</button></div>
-<div class="item"><h4>Chicken Tikka Pizza</h4><p>₹299</p><button onclick="add('Chicken Tikka Pizza',299)">Add</button></div>
-<div class="item"><h4>Achari Chicken Pizza</h4><p>₹299</p><button onclick="add('Achari Chicken Pizza',299)">Add</button></div>
-<div class="item"><h4>Mixed Pizza (Large)</h4><p>₹399</p><button onclick="add('Mixed Pizza',399)">Add</button></div>
-<div class="item"><h4>Hot Wings Special Pizza</h4><p>₹449</p><button onclick="add('Hot Wings Special Pizza',449)">Add</button></div>
-<div class="item"><h4>Corn Cheese Pizza</h4><p>₹249</p><button onclick="add('Corn Cheese Pizza',249)">Add</button></div>
-<div class="item"><h4>Special Combo Pizza</h4><p>₹499</p><button onclick="add('Special Combo Pizza',499)">Add</button></div>
-
-</div>
-
-</div>
-
-<!-- CART -->
+<div id="menuContainer"></div>
 
 <div class="cart">
 
@@ -153,22 +98,23 @@ margin:20px;
 
 </div>
 
-<!-- TABLE BOOKING -->
-
 <div class="cart">
 
 <h2>Book a Table</h2>
 
 <input placeholder="Name">
 <input placeholder="Phone">
+
 <input type="date">
 <input type="time">
 
 <select>
+
 <option>2 Persons</option>
 <option>4 Persons</option>
 <option>6 Persons</option>
 <option>10 Persons</option>
+
 </select>
 
 <button onclick="alert('Table booked successfully')">Book Table</button>
@@ -177,8 +123,228 @@ margin:20px;
 
 <script>
 
+let menu = {
+
+"Momos":[
+"Deep Fried Momo",
+"Pan Fried Momo",
+"Honey Toast Momo",
+"Butter Toast Momo",
+"Hot Garlic Momo",
+"Chilli Soya Toast Momo",
+"Mayonnaise Momo",
+"Schezwan Momo",
+"Tandoori Momo",
+"Dahi Momo",
+"Afghani Momo",
+"Kurkure Momo",
+"Momo Thali (15pcs)",
+"Hariyali Momo",
+"Pizza Momo",
+"Wonton Momo"
+],
+
+"Pizza":[
+"Margherita Pizza",
+"Paneer Cheese Pizza",
+"Paneer Tikka Pizza",
+"Chicken Cheese Pizza",
+"Meat Lovers Pizza",
+"Chicken Tikka Pizza",
+"Achari Chicken Pizza",
+"Mixed Pizza (Large)",
+"Hot Wings Special Pizza (Super Large)",
+"Corn Cheese Pizza",
+"Special Combo Pizza"
+],
+
+"Burgers":[
+"Veg Burger",
+"Chicken Burger",
+"Chicken Cheese Burger",
+"Veg Cheese Burger"
+],
+
+"Beverages":[
+"Coffee",
+"Lime Juice",
+"Masala Cold Drink",
+"Cold Coffee",
+"Lassi",
+"Coffee Xpresso"
+],
+
+"Rolls":[
+"Veg Roll",
+"Egg Roll",
+"Double Egg Roll",
+"Jumbo Egg Roll",
+"Chicken Roll",
+"Egg Chicken Roll",
+"Panner Roll",
+"Special Roll"
+],
+
+"Veg Starters":[
+"Paneer Pakoda",
+"Chilli Paneer Dry Fry",
+"Veg Manchurian",
+"Panner Manchurian",
+"French Fry",
+"Honey Chilli Potato",
+"Crispy Chilli Corn"
+],
+
+"Snacks & Beverages":[
+"Tea",
+"Coffee",
+"Veg Pakoda",
+"Onion Pakoda",
+"Lime Juice",
+"Mojito",
+"Masala Cold Drink"
+],
+
+"Rice":[
+"Plain Rice",
+"Ghee Rice",
+"Veg Fried Rice",
+"Jeera Rice",
+"Egg Fried Rice",
+"Paneer Fried Rice",
+"Andhra Veg Rice",
+"Chicken Fried Rice",
+"Andhra Chicken Rice",
+"Chicken Schezwan Fried Rice",
+"Mixed Fried Rice",
+"Singapoori Rice",
+"Korean Rice",
+"Hong Kong Rice"
+],
+
+"Noodles":[
+"Veg Noodles",
+"Egg Noodles",
+"Egg Schezwan Noodles",
+"Paneer Noodles",
+"Chicken Noodles",
+"Paneer Schezwan Noodles",
+"Chicken Schezwan Noodles",
+"Chicken Gravy Noodles",
+"Paneer Gravy Noodles",
+"Chicken Thukpa",
+"Mixed Noodles",
+"American Chopsuey"
+],
+
+"Combo Offer":[
+"Veg Fried Rice + Chilli Chicken",
+"Chilli Paneer + Plain Rice",
+"Chicken Curry + Veg Noodles",
+"French Fry + Cold Drink",
+"Crispy Chilli Baby Corn"
+],
+
+"Sizzler":[
+"Veg Sizzler",
+"Chicken Sizzler"
+],
+
+"Roti / Naan":[
+"Plain Roti",
+"Butter Roti",
+"Tandoori Roti",
+"Butter Tandoori Roti",
+"Plain Naan",
+"Butter Naan",
+"Garlic Naan",
+"Paneer Naan",
+"Laccha Paratha",
+"Malai Naan"
+],
+
+"Shake":[
+"Mango Milkshake",
+"Butter Scotch Shake",
+"Guava Milkshake",
+"Grapes Milkshake"
+],
+
+"Wrap & Tacos":[
+"Chicken Tacos",
+"Tortilla Wrap"
+],
+
+"Biryani":[
+"Chicken Dum Biryani",
+"Paneer Dum Biryani",
+"Egg Biryani",
+"Mutton Dum Biryani"
+],
+
+"Tandoori":[
+"Chicken Tandoori",
+"Chicken Leg",
+"Chicken Breast",
+"Chicken Tikka",
+"Malai Tikka",
+"Hot Wings",
+"Afghani Chicken",
+"Paneer Tikka",
+"Pron Tikka",
+"Fish Tikka"
+],
+
+"Breakfast":[
+"Tea",
+"Coffee",
+"Plain Polao",
+"Plain Paratha",
+"Chole Bhature",
+"Alu Paratha",
+"Laccha Paratha"
+]
+
+}
+
 let cart=[]
 let total=0
+
+function buildMenu(){
+
+let container=document.getElementById("menuContainer")
+
+for(let category in menu){
+
+let section=document.createElement("div")
+section.className="section"
+
+let title=document.createElement("h2")
+title.innerText=category
+
+section.appendChild(title)
+
+let menuBox=document.createElement("div")
+menuBox.className="menu"
+
+menu[category].forEach(food=>{
+
+let item=document.createElement("div")
+item.className="item"
+
+item.innerHTML="<h4>"+food+"</h4><p>₹120</p><button onclick=\"add('"+food+"',120)\">Add</button>"
+
+menuBox.appendChild(item)
+
+})
+
+section.appendChild(menuBox)
+
+container.appendChild(section)
+
+}
+
+}
 
 function add(name,price){
 
@@ -216,20 +382,22 @@ let name=document.getElementById("name").value
 let phone=document.getElementById("phone").value
 let address=document.getElementById("address").value
 
-let message="Order:%0A"
+let msg="New Order:%0A"
 
 cart.forEach(item=>{
-message+=item.name+" ₹"+item.price+"%0A"
+msg+=item.name+" ₹"+item.price+"%0A"
 })
 
-message+="Total: ₹"+total+"%0A"
-message+="Name: "+name+"%0A"
-message+="Phone: "+phone+"%0A"
-message+="Address: "+address
+msg+="Total: ₹"+total+"%0A"
+msg+="Name:"+name+"%0A"
+msg+="Phone:"+phone+"%0A"
+msg+="Address:"+address
 
-window.open("https://wa.me/919957603281?text="+message)
+window.open("https://wa.me/919957603281?text="+msg)
 
 }
+
+buildMenu()
 
 </script>
 
