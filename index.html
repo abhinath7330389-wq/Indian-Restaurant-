@@ -3,47 +3,67 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Hot Wings Restaurant</title>
 
 <style>
 
 body{
-background:#000;
-color:white;
-font-family:Arial;
 margin:0;
+font-family: 'Segoe UI', sans-serif;
+background:#f5f5f5;
+color:#333;
+}
+
+header{
+background:#8b0000;
+color:white;
 padding:20px;
+text-align:center;
 }
 
 h1{
-text-align:center;
-color:#ff6a00;
+margin:0;
 }
 
-h2{
+.container{
+padding:20px;
+max-width:900px;
+margin:auto;
+}
+
+.category{
 margin-top:30px;
-border-bottom:1px solid #444;
+}
+
+.category h2{
+border-bottom:2px solid #ddd;
 padding-bottom:5px;
 }
 
 .food{
-background:#1a1a1a;
+background:white;
 padding:15px;
 margin:10px 0;
-border-radius:12px;
+border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
+.food-name{
+font-weight:500;
+}
+
 .qty{
 display:flex;
-gap:10px;
 align-items:center;
+gap:10px;
 }
 
 button{
-background:#ff6a00;
+background:#ff6b00;
 border:none;
 color:white;
 width:35px;
@@ -53,28 +73,39 @@ font-size:18px;
 cursor:pointer;
 }
 
+button:hover{
+background:#e85f00;
+}
+
 .cart{
-background:#111;
+background:white;
 padding:20px;
-margin-top:40px;
+margin-top:30px;
 border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
 input,select{
 width:100%;
 padding:10px;
-margin:6px 0;
+margin:8px 0;
 border-radius:6px;
-border:none;
+border:1px solid #ccc;
 }
 
 .orderbtn{
-background:#ff6a00;
-padding:12px;
+background:#8b0000;
+color:white;
 border:none;
-border-radius:8px;
+padding:12px;
 width:100%;
+border-radius:8px;
 font-size:16px;
+cursor:pointer;
+}
+
+.orderbtn:hover{
+background:#6f0000;
 }
 
 </style>
@@ -83,7 +114,14 @@ font-size:16px;
 
 <body>
 
+<header>
+
 <h1>🔥 Hot Wings Restaurant</h1>
+<p>Online Food Ordering & Table Booking</p>
+
+</header>
+
+<div class="container">
 
 <div id="menu"></div>
 
@@ -99,7 +137,7 @@ font-size:16px;
 <input id="phone" placeholder="Phone">
 <input id="address" placeholder="Address">
 
-<button class="orderbtn" onclick="sendOrder()">Send Order to WhatsApp</button>
+<button class="orderbtn" onclick="sendOrder()">Order on WhatsApp</button>
 
 </div>
 
@@ -115,19 +153,23 @@ font-size:16px;
 <input id="btime" type="time">
 
 <select id="bpersons">
+
 <option>2 Persons</option>
 <option>4 Persons</option>
 <option>6 Persons</option>
 <option>10 Persons</option>
+
 </select>
 
 <button class="orderbtn" onclick="bookTable()">Book Table</button>
 
 </div>
 
+</div>
+
 <script>
 
-let menu = {
+let menu={
 
 "Pizza":[
 {name:"Paneer Veggies Pizza",price:210},
@@ -139,59 +181,17 @@ let menu = {
 
 "Momos":[
 {name:"Chicken Momo",price:70},
-{name:"Veg Momo",price:50},
-{name:"Deep Fried Momo",price:90},
-{name:"Pan Fried Momo",price:90},
-{name:"Honey Toast Momo",price:110},
-{name:"Butter Toast Momo",price:110},
-{name:"Hot Garlic Momo",price:100},
-{name:"Chilli Soya Toast Momo",price:100},
-{name:"Mayonnaise Momo",price:110},
-{name:"Schezwan Momo",price:100},
-{name:"Tandoori Momo",price:120},
-{name:"Dahi Momo",price:120},
-{name:"Afghani Momo",price:130},
-{name:"Kurkure Momo",price:120},
-{name:"Momo Thali (15pcs)",price:200},
-{name:"Hariyali Momo",price:130},
-{name:"Pizza Momo",price:140},
-{name:"Wonton Momo",price:140}
+{name:"Veg Momo",price:50}
 ],
 
 "Burgers":[
 {name:"Veg Burger",price:90},
-{name:"Chicken Burger",price:130},
-{name:"Chicken Cheese Burger",price:150},
-{name:"Veg Cheese Burger",price:120}
+{name:"Chicken Burger",price:130}
 ],
 
 "Drinks":[
 {name:"Masala Coke",price:40},
-{name:"Lassi",price:60},
-{name:"Cold Coffee",price:80},
-{name:"Lime Juice",price:40},
-{name:"Coffee",price:30},
-{name:"Coffee Xpresso",price:60}
-],
-
-"Biryani":[
-{name:"Chicken Dum Biryani",price:180},
-{name:"Paneer Dum Biryani",price:170},
-{name:"Egg Biryani",price:150},
-{name:"Mutton Dum Biryani",price:260}
-],
-
-"Tandoori":[
-{name:"Chicken Tandoori",price:260},
-{name:"Chicken Leg",price:120},
-{name:"Chicken Breast",price:140},
-{name:"Chicken Tikka",price:220},
-{name:"Malai Tikka",price:240},
-{name:"Hot Wings (4pcs)",price:160},
-{name:"Afghani Chicken",price:260},
-{name:"Paneer Tikka",price:220},
-{name:"Prawn Tikka",price:280},
-{name:"Fish Tikka",price:260}
+{name:"Lassi",price:60}
 ]
 
 }
@@ -200,13 +200,17 @@ let cart={}
 
 function buildMenu(){
 
-let menuDiv=document.getElementById("menu")
+let container=document.getElementById("menu")
 
 for(let category in menu){
 
+let section=document.createElement("div")
+section.className="category"
+
 let title=document.createElement("h2")
 title.innerText=category
-menuDiv.appendChild(title)
+
+section.appendChild(title)
 
 menu[category].forEach(food=>{
 
@@ -215,7 +219,7 @@ div.className="food"
 
 div.innerHTML=`
 
-<div>${food.name} ₹${food.price}</div>
+<div class="food-name">${food.name} ₹${food.price}</div>
 
 <div class="qty">
 
@@ -229,9 +233,11 @@ div.innerHTML=`
 
 `
 
-menuDiv.appendChild(div)
+section.appendChild(div)
 
 })
+
+container.appendChild(section)
 
 }
 
@@ -254,7 +260,6 @@ updateCart()
 function updateCart(){
 
 let list=document.getElementById("cart")
-
 list.innerHTML=""
 
 let total=0
@@ -264,7 +269,6 @@ for(let item in cart){
 if(cart[item].q>0){
 
 let li=document.createElement("li")
-
 li.innerText=item+" x "+cart[item].q
 
 list.appendChild(li)
